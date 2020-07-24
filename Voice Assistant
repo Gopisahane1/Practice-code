@@ -1,0 +1,115 @@
+import pyttsx3
+import speech_recognition as sr
+import datetime
+import wikipedia
+import webbrowser
+import os
+import smtplib
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+
+# print(voices[1].id)
+engine.setProperty('voice', voices[0].id)
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+def wishMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour>=0 and hour<12:
+        speak("Good Morning Sir!")
+
+    elif hour>= 12 and hour<18:
+        speak("Good Afternoon Sir")
+
+    else:
+        speak("Good Evening Sir!")
+
+    speak("I am Shaktimaan Sir, Please tell me how may i help you")
+
+def takeCommand():
+    '''
+    it takes micro phone inpute from the use and return string output
+    :return:
+    '''
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening.....")
+        r.pause_threshold = 1 #Second of non speaking audio before a phare is considered complete
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing....")
+        query = r.recognize_google(audio, Language='en-in')
+        print(f"user said: {query}\n")
+
+    except Exception as e:
+        # print(e)
+        print("Say That Again Please........")
+        return "None"
+    return query
+
+def sendEmail(to, content):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo() 
+    server.starttls()
+    server.login('your mail id','your mail id pass')
+    server.sendmail('friend Mail ID',to, content)
+    server.close()
+
+if __name__ == "__main__":
+    wishMe()
+    while True:
+        query = takeCommand().lower()
+
+        if'wikipedia' in query:
+            speak('Searching Wikipedia......')
+            query = query.replace("wikipedia","")
+            results = wikipedia.summary(query, sentences=5)
+            speak("According to Wikipedia")
+            speak(results)
+
+        elif'open youtube' in query:
+            webbrowser.open("youtube.com")
+
+        elif 'open facebook' in query:
+            webbrowser.open("facebook.com")
+
+        elif 'open getintopc' in query:
+            webbrowser.open("getintopc.com")
+
+        elif 'open filecr' in query:
+            webbrowser.open("filecr.com")
+
+        elif 'open stackoverflow' in query:
+            webbrowser.open("stackoverflow.com")
+
+        elif 'open Despacito in Youtube' in query:
+            webbrowser.open("https://www.youtube.com/watch?v=kJQP7kiw5Fk")
+
+        elif 'play music' in query:
+            music_dir = 'E:\\Music'
+            songs = os.listdir(music_dir)
+            print(songs)
+            os.startfile(os.path.join(music_dir, songs[0]))
+
+        elif 'the time' in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"Sir, the time is {strTime}")
+
+        elif 'open spotify' in query:
+            spotifypath = 'C:\\Users\\Lemniscate\\AppData\\Roaming\\Spotify\\Spotify.exe'
+            os.startfile(spotifypath)
+        elif 'email to bhushan' in query:
+            try:
+                speak("what should i say ?")
+                content = takeCommand()
+                to = "Your Friend Mail ID"
+                sendEmail(to,content)
+                speak("Email has been sent!")
+            except Exception as e:
+                print(e)
+                speak("Sorry Sir, I'm not able to send this email")
