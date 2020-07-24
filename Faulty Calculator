@@ -1,0 +1,38 @@
+print ("Enter 1st Number :")
+ex1 = int(input())
+print ("Enter 2nd Number :")
+ex2 = int(input())
+print ("Choose one +,-,/,*,%")
+ex3 = input()
+
+if ex1==45 and ex2==3 and ex3=='*':
+    print("555")
+
+elif ex1==56 and ex2==9 and ex3=='+':
+    print("555")
+
+elif ex1==56 and ex2==6 and ex3=='/':
+    print("4")
+
+elif ex3 == '*':
+    multi = ex1 * ex2
+    print(multi)
+
+elif ex3 == '+':
+    plus = ex1 + ex2
+    print(plus)
+
+elif ex3 == '/':
+    divide = ex1 / ex2
+    print(divide)
+
+elif ex3 == '-':
+    minus = ex1 - ex2
+    print(minus)
+
+elif ex3 == '%':
+    Percentage = ex1 % ex2
+    print(Percentage)
+
+else:
+    print("Check once your problem.")
