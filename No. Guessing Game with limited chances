@@ -1,0 +1,23 @@
+n = 77
+number_guess = 10
+print("Guess Correct number, Number of guesses left: 10")
+while number_guess>0:
+    guess_number = int(input())
+    number_guess=number_guess -1
+
+    if guess_number == n:
+        print("Your answer is correct")
+        break
+
+    elif guess_number > n:
+        print("your number is wrong please try again, Number is smaller than winning number:",number_guess)
+        continue
+    elif guess_number < n:
+        print("your number is wrong please try again, Number is Greater than winning number:",number_guess)
+        continue
+
+if guess_number > 0:
+    print("Congratulations, You Won!","Number of guesses left:",number_guess)
+
+else:
+    print("Game Over, Try Again")
