@@ -1,0 +1,96 @@
+import datetime
+def getdate():
+    return datetime.datetime.now()
+
+def take(k):
+
+    if k==1:
+        c= int(input("Enter 1 for exercise and 2 for food : "))
+        if (c==1):
+            value = input("type here\n")
+            with open ("Bhushan-ex.txt","a")as op:
+                op.write(str([str(getdate())])+": "+value+"\n")
+            print("Successfully Created")
+
+        elif (c==2):
+            value = input("type here \n")
+            with open("Bhushan-food.txt","a")as op:
+                op.write(str(str([str(getdate())])) + ": " + value + "\n")
+            print("Successfully created")
+
+    elif (k==2):
+        c = int(input("Enter 1 for exercise and 2 for food : "))
+        if (c == 1):
+            value = input("type here\n")
+            with open("Gopi-ex.txt", "a")as op:
+                op.write(str([str(getdate())]) + ": " + value + "\n")
+            print("Successfully Created")
+
+        elif (c == 2):
+            value = input("type here \n")
+            with open("Gopi-food.txt", "a")as op:
+                op.write(str(str([str(getdate())])) + ": " + value + "\n")
+            print("Successfully created")
+
+    elif (k==3):
+        c = int(input("Enter 1 for exercise and 2 for food : "))
+        if (c == 1):
+            value = input("type here\n")
+            with open("Kiki-ex.txt", "a")as op:
+                op.write(str([str(getdate())]) + ": " + value + "\n")
+            print("Successfully Created")
+
+        elif (c == 2):
+            value = input("type here \n")
+            with open("Kiki-food.txt", "a")as op:
+                op.write(str(str([str(getdate())])) + ": " + value + "\n")
+            print("Successfully created")
+
+def retrive(k):
+    if k==1:
+        c=int(input("enter 1 for exercise and 2 for food : "))
+        if (c==1):
+            with open ("Bhushan-ex.txt") as op:
+                for i in op:
+                    print(i,end=" ")
+
+        elif (c==2):
+            with open ("Bhushan-food.txt") as op:
+                for i in op:
+                    print(i,end=" ")
+
+    elif(k==2):
+        c=int(input("enter 1 for exercise and 2 for food : "))
+        if (c == 1):
+            with open("Gopi-ex.txt") as op:
+                for i in op:
+                    print(i, end=" ")
+
+        elif (c==2):
+            with open("Gopi-food.txt") as op:
+                for i in op:
+                    print(i, end=" ")
+
+    elif (k==3):
+        c = int(input("enter 1 for exercise and 2 for food : "))
+        if (c == 1):
+            with open("Kiki-ex.txt") as op:
+                for i in op:
+                    print(i, end=" ")
+
+        elif (c == 2):
+            with open("Kiki-food.txt") as op:
+                for i in op:
+                    print(i, end=" ")
+    else:
+        print("Please enter valid Input (Bhushan, Gopi, Kiki)")
+print("Health Management System (Exercise Food racker)")
+
+a = int(input("Press 1 for log the value and 2 for retrieve : "))
+
+if a==1:
+    b = int(input("Press 1 for Bhushan, 2 for Gopi and 3 for Kiki : "))
+    take(b)
+else:
+    b = int(input("Press 1 for Bhushan, 2 for Gopi and 3 for Kiki : "))
+    retrive(b)
